@@ -4,12 +4,13 @@ import AppointmentHeader from "./AppointmentHeader/AppointmentHeader";
 import AvailableAppointments from "./AvailableAppointments/AvailableAppointments";
 
 const Appointment = () => {
+  const [date, setDate] = React.useState(new Date());
   return (
     <div>
       <h1>hello Appointment </h1>
       <Navigation></Navigation>
-      <AppointmentHeader></AppointmentHeader>
-      <AvailableAppointments></AvailableAppointments>
+      <AppointmentHeader date={date} setDate={setDate}></AppointmentHeader>
+      <AvailableAppointments date={date}></AvailableAppointments>
     </div>
   );
 };
