@@ -8,12 +8,12 @@ const AppointmentHeader = () => {
     <div>
       <h3>appointment header </h3>
 
-      <Container>
+      <Container style={{ display: "flex" }}>
         <Grid xs={12} md={6}>
           <Calender></Calender>
         </Grid>
         <Grid xs={12} md={6}>
-          <img style={{ width: 400, marginTop: "-110px" }} src={chair} alt="" />
+          <img style={{ width: 400 }} src={chair} alt="" />
         </Grid>
       </Container>
     </div>
