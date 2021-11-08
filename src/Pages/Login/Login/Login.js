@@ -1,13 +1,23 @@
 import { Button, Container, Grid, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import login from "../../../images/login.png";
 
 const Login = () => {
+  const [loginData, setLoginData] = useState({});
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
   };
 
+  const handleOnChange = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newLoginData = { ...loginData };
+    newLoginData[field] = value;
+    setLoginData(newLoginData);
+    console.log(newLoginData);
+  };
   return (
     <Container>
       <Grid container spacing={2}>
@@ -25,6 +35,7 @@ const Login = () => {
               id="standard-basic"
               label="Your Email"
               name="email"
+              onChange={handleOnChange}
               variant="standard"
             />
             <TextField
@@ -32,6 +43,7 @@ const Login = () => {
               id="standard-basic"
               label="Your Password"
               type="password"
+              onChange={handleOnChange}
               name="password"
               variant="standard"
             />
