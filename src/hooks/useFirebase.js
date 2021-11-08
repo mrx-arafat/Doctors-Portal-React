@@ -5,6 +5,7 @@ import {
   createUserWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 //init firebase app
 
@@ -28,6 +29,17 @@ const useFirebase = () => {
         // ..
       });
   };
+
+  //login user
+  const loginUser = (email, password, location, history) => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const destination = location?.state?.from || "/";
+        history.replace(destination);
+      })
+      .catch((error) => {});
+  };
+
   // observer user state
   useEffect(() => {
     const unsubscribed = onAuthStateChanged(auth, (user) => {
@@ -53,6 +65,7 @@ const useFirebase = () => {
     user,
     registerUser,
     logOut,
+    loginUser,
   };
 };
 
