@@ -36,7 +36,6 @@ const useFirebase = () => {
       } else {
         setUser({});
       }
-      setIsLoading(false);
     });
     return () => unsubscribed;
   }, []);
