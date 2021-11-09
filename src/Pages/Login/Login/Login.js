@@ -6,6 +6,8 @@ import login from "../../../images/login.png";
 const Login = () => {
   const [loginData, setLoginData] = useState({});
 
+  const { user, loginUser, isLoading, authError } = useAuth();
+
   const handleLoginSubmit = (e) => {
     e.preventDefault();
   };
