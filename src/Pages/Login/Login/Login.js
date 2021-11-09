@@ -24,7 +24,9 @@ const Login = () => {
     loginUser(loginData.email, loginData.password, location, history);
     e.preventDefault();
   };
-
+  const handleGoogleSignIn = () => {
+    signInWithGoogle(location, history);
+  };
   const handleOnChange = (e) => {
     const field = e.target.name;
     const value = e.target.value;
@@ -80,6 +82,11 @@ const Login = () => {
             )}
             {authError && <Alert severity="error">{authError}</Alert>}
           </form>
+
+          <p>------------------------</p>
+          <Button onClick={handleGoogleSignIn} variant="contained">
+            Google Sign In
+          </Button>
         </Grid>
         <Grid item xs={12} md={6}>
           <img style={{ width: "100%" }} src={login} alt="" />
