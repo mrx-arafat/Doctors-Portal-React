@@ -15,7 +15,7 @@ import login from "../../../images/login.png";
 const Login = () => {
   const [loginData, setLoginData] = useState({});
 
-  const { user, loginUser, isLoading, authError } = useAuth();
+  const { user, loginUser, isLoading, authError, signInWithGoogle } = useAuth();
 
   const location = useLocation();
   const history = useHistory();

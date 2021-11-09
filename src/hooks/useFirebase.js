@@ -6,6 +6,8 @@ import {
   signInWithEmailAndPassword,
   onAuthStateChanged,
   signOut,
+  signInWithPopup,
+  GoogleAuthProvider,
 } from "firebase/auth";
 // initialize firebase app
 initializeFirebase();
@@ -16,7 +18,7 @@ const useFirebase = () => {
   const [authError, setAuthError] = useState("");
 
   const auth = getAuth();
-
+  const googleProvider = new GoogleAuthProvider();
   const registerUser = (email, password) => {
     setIsLoading(true);
     createUserWithEmailAndPassword(auth, email, password)
@@ -57,6 +59,23 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, []);
 
+  //google
+  const signInWithGoogle = (location, history) => {
+    setIsLoading(true);
+    signInWithPopup(auth, googleProvider)
+      .then((result) => {
+        const user = result.user;
+        setAuthError("");
+        // ...
+      })
+      .catch((error) => {
+        setAuthError(error.message);
+      })
+      .finally(() => setIsLoading(false));
+  };
+
+  //log out
+
   const logout = () => {
     setIsLoading(true);
     signOut(auth)
@@ -76,6 +95,7 @@ const useFirebase = () => {
     registerUser,
     loginUser,
     logout,
+    signInWithGoogle,
   };
 };
 

@@ -6,7 +6,7 @@ import Calender from "../../../../Shared/Calender/Calender";
 const AppointmentHeader = ({ date, setDate }) => {
   return (
     <div>
-      <Container style={{ display: "flex" }}>
+      <Container style={{ display: "flex", marginTop: "60px" }}>
         <Grid xs={12} md={6}>
           <Calender date={date} setDate={setDate}></Calender>
         </Grid>
