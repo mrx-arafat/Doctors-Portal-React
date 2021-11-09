@@ -8,7 +8,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useHistory } from "react-router-dom";
 import useAuth from "../../../hooks/useAuth";
 import login from "../../../images/login.png";
 
@@ -17,9 +17,11 @@ const Login = () => {
 
   const { user, loginUser, isLoading, authError } = useAuth();
 
-  const handleLoginSubmit = (e) => {
-    loginUser(loginData.email, loginData.password);
+  const location = useLocation();
+  const history = useHistory();
 
+  const handleLoginSubmit = (e) => {
+    loginUser(loginData.email, loginData.password, location, history);
     e.preventDefault();
   };
 

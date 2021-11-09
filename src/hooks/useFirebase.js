@@ -3,12 +3,11 @@ import initializeFirebase from "../Pages/Login/Firebase/firebase.init";
 import {
   getAuth,
   createUserWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
-//init firebase app
-
+// initialize firebase app
 initializeFirebase();
 
 const useFirebase = () => {

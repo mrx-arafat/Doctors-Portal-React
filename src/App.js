@@ -7,6 +7,7 @@ import Appointment from "./Pages/Appointment/Appointment/Appointment";
 import Login from "./Pages/Login/Login/Login";
 import Register from "./Pages/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import PrivateRoute from "./Pages/Login/PrivateRoute/PrivateRoute";
 
 function App() {
   return (
@@ -14,14 +15,15 @@ function App() {
       <AuthProvider>
         <BrowserRouter>
           <Switch>
+            {" "}
+            <PrivateRoute path="/appointment">
+              <Appointment></Appointment>
+            </PrivateRoute>
             <Route path="/home">
               <Home></Home>
             </Route>
             <Route exact path="/">
               <Home></Home>
-            </Route>
-            <Route path="/appointment">
-              <Appointment></Appointment>
             </Route>
             <Route path="/login">
               <Login></Login>
