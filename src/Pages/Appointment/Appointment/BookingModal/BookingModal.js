@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
@@ -22,17 +22,31 @@ const style = {
 
 const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
   const { user } = useAuth();
-
   const { name, time } = booking;
-  const handleBookingSubmit = (e) => {
-    alert("submitting");
+  const [bookingInfo, setBookingInfo] = useState();
 
-    // collect data
-    // send to the server
-
-    handleBookingClose();
-    e.preventDefault();
+  const initialInfo = {
+    patientName: user.displayName,
+    email: user.email,
+    phone: "",
   };
+
+  const handleOnBlur = (e) => {
+    const field = e.target.name;
+    const value = e.target.value;
+    const newInfo = { ...bookingInfo };
+    newInfo[field] = value;
+    setBookingInfo(newInfo);
+  };
+
+  const handleBookingSubmit = e => {
+    // collect data
+    const appointment = {
+        ...bookingInfo,
+        time,
+        serviceName: name,
+        date: date.toLocaleDateString()
+    }
 
   return (
     <Modal
@@ -62,18 +76,24 @@ const BookingModal = ({ openBooking, handleBookingClose, booking, date }) => {
             <TextField
               sx={{ width: "90%", m: 1 }}
               id="outlined-size-small"
+              onBlur={handleOnBlur}
+              name="patientName"
               defaultValue={user.displayName}
               size="small"
             />
             <TextField
               sx={{ width: "90%", m: 1 }}
               id="outlined-size-small"
+              onBlur={handleOnBlur}
+              name="email"
               defaultValue={user.email}
               size="small"
             />
             <TextField
               sx={{ width: "90%", m: 1 }}
               id="outlined-size-small"
+              onBlur={handleOnBlur}
+              name="phone"
               defaultValue="Phone Number"
               size="small"
             />
