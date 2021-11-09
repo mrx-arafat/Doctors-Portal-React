@@ -46,6 +46,7 @@ const Register = () => {
                 id="standard-basic"
                 label="Your Name"
                 name="name"
+                type="text"
                 onBlur={handleOnBlur}
                 variant="standard"
               />
